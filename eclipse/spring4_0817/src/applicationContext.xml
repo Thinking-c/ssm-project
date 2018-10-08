@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- p命名空间的方式注入2.5以后的版本（xmlns:p="http://www.springframework.org/schema/p"） -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- spring入门配置 -->
+	<bean id="userServiceImpl" class="com.thinking.dao.UserDaoImpl">
+		<property name="name" value="李四"></property>
+	</bean>
+	
+	<!-- spring的Bean的实例化的方式(默认无参构造方法的方式) -->
+	<!-- <bean id="bean1" class="com.thinking.dao.Bean1"/> -->
+	
+	<!-- 静态工厂实例化 -->
+	<!-- <bean id="bean2" class="com.thinking.dao.Bean2Factory" factory-method="createBean2"/> -->
+	
+	<!-- 实例工厂实例化 -->
+	<!-- <bean id="bean3Factory" class="com.thinking.dao.Bean3Factory"/>
+	<bean id="bean3" factory-bean="bean3Factory" factory-method="createBean3"/> -->
+
+	<!-- spring的Bean的生命周期配置以及scope配置 -->
+	<bean id="customerDaoImpl"
+		class="com.thinking.dao.CustomerDaoImpl" scope="prototype"
+		init-method="setup" destroy-method="destroy" />
+
+	<!-- spring属性注入的方式（构造方法的方式） -->
+	<bean id="car" class="com.thinking.dao.Car">
+		<constructor-arg name="name" value="宝马" />
+		<constructor-arg name="price" value="800000" />
+	</bean>
+
+	<!-- spring属性注入的方式（set方法的方式） -->
+	<!-- <bean id="car2" class="com.thinking.dao.Car2">
+		<property name="name" value="奔驰" />
+		<property name="price" value="1000000"></property>
+	</bean> -->
+	<!-- 改为p名称空间的方式 -->
+	<!-- <bean id="car2" class="com.thinking.dao.Car2" p:name="荣威e50" p:price="800000"></bean> -->
+	<!-- SpEL属性注入 -->
+	<!-- <bean id="car2" class="com.thinking.dao.Car2">
+		<property name="name" value="#{'奇瑞qq'}"/>
+		<property name="price" value="#{40000}"/>		
+	</bean> -->
+	<!-- SpEL属性注入（调用其他类的属性和方法） -->
+	<bean id="carInfo" class="com.thinking.dao.CarInfo"/>
+	<bean id="car2" class="com.thinking.dao.Car2">
+		<property name="name" value="#{carInfo.name}"/>
+		<property name="price" value="#{carInfo.CalculatorPrice()}"/>		
+	</bean>
+
+	<!-- set方法注入对象类型的属性 -->
+	<!-- <bean id="employee" class="com.thinking.dao.Employee">
+	    value:设置普通类型的值，ref:设置其他类的id或name
+		<property name="name" value="张三" />
+		<property name="car2" ref="car2" />
+	</bean> -->
+	<!-- 改为P名称空间的方式 -->
+	<!-- <bean id="employee" class="com.thinking.dao.Employee" p:name="李四" p:car2-ref="car2"></bean> -->
+	<!-- SpEL的属性注入 -->
+	<bean id="employee" class="com.thinking.dao.Employee">
+		<property name="name" value="#{'王五'}"/>
+		<property name="car2" value="#{car2}"></property>
+	</bean>
+
+	<!-- SpEL的属性注入 -->
+	<bean id="cat" class="com.thinking.dao.Cat">
+		<property name="name" value="#{'tutu'}"/>
+		<property name="age" value="#{3}"/>
+		<property name="weight" value="#{20}"/>
+	</bean>
+	
+	<!-- =============================================================================== -->
+	<!-- spring集合属性的注入 -->
+	<bean id="collectionBean" class="com.thinking.dao.CollectionBean">
+		<!-- 注入数组（数组类型和list集合一样） -->
+		<property name="arrs" >
+			<list>
+				<value>张三</value>
+				<value>李四</value>
+				<value>王五</value>
+			</list>
+		</property>
+		<!-- 注入list -->
+		<property name="list">
+			<list>
+				<value>java</value>
+				<value>javaScript</value>
+				<value>shell</value>
+			</list>
+		</property>
+		<!-- 注入set -->
+		<property name="set">
+			<set>
+				<value>语文</value>
+				<value>数学</value>
+				<value>英语</value>
+			</set>
+		</property>
+		<!-- 注入map -->
+		<property name="map">
+			<map>
+				<entry key="aaa" value="111"/>
+				<entry key="bbb" value="222"/>
+				<entry key="ccc" value="333"/>
+			</map>
+		</property>
+	</bean>
+	
+	
+
+
+
+
+
+
+
+
+
+
+</beans>

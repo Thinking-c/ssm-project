@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Spring的IOC的注解入门 -->
+	<!-- 使用IOC的注解开发，配置扫描(哪些包下面的类使用IOC的注解) -->
+	<!-- 扫描是为了扫描类上的注解 -->
+	<!-- <context:component-scan base-package="com.thinking"></context:component-scan> -->
+	
+	<!-- 在没有扫描的情况下，使用属性注入的注解   @Resource @Value @Autowired @Qulifier -->
+	<context:annotation-config/>
+	
+	<bean id="productService" class="com.thinking.demo3.ProductService">
+		<!-- <property name="productDao" ref="productDao"/>
+		<property name="orderDao" ref="orderDao"/> -->
+	</bean>
+	
+	<bean id="orderDao" class="com.thinking.demo3.OrderDao"/>
+	<bean id="productDao" class="com.thinking.demo3.ProductDao"/>
+
+</beans>

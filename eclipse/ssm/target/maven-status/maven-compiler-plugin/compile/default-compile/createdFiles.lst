@@ -1,0 +1,5 @@
+com\thinking\service\impl\UserServiceImpl.class
+com\thinking\dao\model\User.class
+com\thinking\service\UserService.class
+com\thinking\controller\UserController.class
+com\thinking\dao\mapper\UserMapper.class
