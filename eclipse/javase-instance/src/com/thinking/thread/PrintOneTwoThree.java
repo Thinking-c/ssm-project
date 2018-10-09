@@ -8,9 +8,9 @@ package com.thinking.thread;
  */
 public class PrintOneTwoThree {
 
-	
 	/**
-	  *  三个线程，分别打印A、B、C，要求按ABC的顺序循环打印10次
+	 * 三个线程，分别打印A、B、C，要求按ABC的顺序循环打印10次
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -22,8 +22,7 @@ public class PrintOneTwoThree {
 		new Thread(p2, "p2").start();
 		new Thread(p3, "p3").start();
 
-		while (Thread.activeCount() > 1)
-			;
+		while (Thread.activeCount() > 1);
 		System.out.println("Done!");
 	}
 }
