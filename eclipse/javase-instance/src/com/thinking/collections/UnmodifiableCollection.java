@@ -1,7 +1,10 @@
 package com.thinking.collections;
 
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *@Author:caoj
@@ -11,6 +14,7 @@ import java.util.List;
  */
 public class UnmodifiableCollection {
 	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		List list = Collections.emptyList();
@@ -18,6 +22,7 @@ public class UnmodifiableCollection {
 		
 		//java.lang.UnsupportedOperationException
 //		list.add("333");
+		
 		
 	}
 
